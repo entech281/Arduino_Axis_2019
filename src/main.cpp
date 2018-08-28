@@ -156,7 +156,7 @@ void update_display(){
     Serial.print(motorDir);
     Serial.print(",SPD=");
     Serial.print(motorSpeed);    
-    Serial.print("[H"); 
+    Serial.println(""); 
     displayDelayCounter = 0;
   }
 
