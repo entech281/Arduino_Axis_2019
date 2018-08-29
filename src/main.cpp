@@ -124,10 +124,10 @@ void process_serial_command(){
         desiredPosition += 100;
         break;
       case 'g':
-        desiredPosition -= 5000;
+        desiredPosition -= 3000;
         break;
       case 'l':
-        desiredPosition += 5000;
+        desiredPosition += 3000;
         break;        
       case 'j':
         desiredPosition = 0;
