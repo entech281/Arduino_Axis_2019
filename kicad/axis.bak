@@ -1,0 +1,171 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:switches
+LIBS:relays
+LIBS:motors
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:arduino
+LIBS:IHE
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Arduino_Uno_Shield XA?
+U 1 1 5B873258
+P 5800 3100
+F 0 "XA?" V 5900 3100 60  0000 C CNN
+F 1 "Arduino_Uno_Shield" V 5700 3100 60  0000 C CNN
+F 2 "" H 7600 6850 60  0001 C CNN
+F 3 "" H 7600 6850 60  0001 C CNN
+	1    5800 3100
+	1    0    0    -1  
+$EndComp
+$Comp
+L +12V #PWR?
+U 1 1 5B8732BA
+P 2100 1200
+F 0 "#PWR?" H 2100 1050 50  0001 C CNN
+F 1 "+12V" H 2100 1340 50  0000 C CNN
+F 2 "" H 2100 1200 50  0001 C CNN
+F 3 "" H 2100 1200 50  0001 C CNN
+	1    2100 1200
+	1    0    0    -1  
+$EndComp
+$Comp
+L GNDPWR #PWR?
+U 1 1 5B8732D1
+P 2150 1800
+F 0 "#PWR?" H 2150 1600 50  0001 C CNN
+F 1 "GNDPWR" H 2150 1670 50  0000 C CNN
+F 2 "" H 2150 1750 50  0001 C CNN
+F 3 "" H 2150 1750 50  0001 C CNN
+	1    2150 1800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Motor_DC M?
+U 1 1 5B87332A
+P 1600 3700
+F 0 "M?" H 1700 3800 50  0000 L CNN
+F 1 "Motor_DC" H 1700 3500 50  0000 L TNN
+F 2 "" H 1600 3610 50  0001 C CNN
+F 3 "" H 1600 3610 50  0001 C CNN
+	1    1600 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L LMD18201 IC?
+U 1 1 5B873549
+P 2950 4850
+F 0 "IC?" H 2950 4750 60  0000 C CNN
+F 1 "LMD18201" H 2650 5200 60  0000 C CNN
+F 2 "" H 2950 4850 60  0000 C CNN
+F 3 "" H 2950 4850 60  0000 C CNN
+	1    2950 4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L USB_A J?
+U 1 1 5B87367C
+P 2300 5900
+F 0 "J?" H 2100 6350 50  0000 L CNN
+F 1 "USB_A" H 2100 6250 50  0000 L CNN
+F 2 "" H 2450 5850 50  0001 C CNN
+F 3 "" H 2450 5850 50  0001 C CNN
+	1    2300 5900
+	1    0    0    -1  
+$EndComp
+$Comp
+L USB_A J?
+U 1 1 5B873719
+P 3450 5850
+F 0 "J?" H 3250 6300 50  0000 L CNN
+F 1 "USB_A" H 3250 6200 50  0000 L CNN
+F 2 "" H 3600 5800 50  0001 C CNN
+F 3 "" H 3600 5800 50  0001 C CNN
+	1    3450 5850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_01x02 J?
+U 1 1 5B873758
+P 1300 5400
+F 0 "J?" H 1300 5500 50  0000 C CNN
+F 1 "Conn_01x02" H 1300 5200 50  0000 C CNN
+F 2 "" H 1300 5400 50  0001 C CNN
+F 3 "" H 1300 5400 50  0001 C CNN
+	1    1300 5400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Barrel_Jack J?
+U 1 1 5B8737F3
+P 2050 2900
+F 0 "J?" H 2050 3110 50  0000 C CNN
+F 1 "Barrel_Jack" H 2050 2725 50  0000 C CNN
+F 2 "" H 2100 2860 50  0001 C CNN
+F 3 "" H 2100 2860 50  0001 C CNN
+	1    2050 2900
+	1    0    0    -1  
+$EndComp
+$Comp
+L SW_Push_Open SW?
+U 1 1 5B873998
+P 5300 5100
+F 0 "SW?" H 5300 5200 50  0000 C CNN
+F 1 "SW_Push_Open" H 5300 5025 50  0000 C CNN
+F 2 "" H 5300 5300 50  0001 C CNN
+F 3 "" H 5300 5300 50  0001 C CNN
+	1    5300 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L SW_Push_Open SW?
+U 1 1 5B873A01
+P 5250 5550
+F 0 "SW?" H 5250 5650 50  0000 C CNN
+F 1 "SW_Push_Open" H 5250 5475 50  0000 C CNN
+F 2 "" H 5250 5750 50  0001 C CNN
+F 3 "" H 5250 5750 50  0001 C CNN
+	1    5250 5550
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC

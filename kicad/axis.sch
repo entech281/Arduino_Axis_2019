@@ -1,0 +1,458 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:switches
+LIBS:relays
+LIBS:motors
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:arduino
+LIBS:IHE
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Arduino_Uno_Shield XA?
+U 1 1 5B873258
+P 7300 3000
+F 0 "XA?" V 7400 3000 60  0000 C CNN
+F 1 "Arduino_Uno_Shield" V 7200 3000 60  0000 C CNN
+F 2 "" H 9100 6750 60  0001 C CNN
+F 3 "" H 9100 6750 60  0001 C CNN
+	1    7300 3000
+	-1   0    0    1   
+$EndComp
+$Comp
+L +12V #PWR?
+U 1 1 5B8732BA
+P 3100 1250
+F 0 "#PWR?" H 3100 1100 50  0001 C CNN
+F 1 "+12V" H 3100 1390 50  0000 C CNN
+F 2 "" H 3100 1250 50  0001 C CNN
+F 3 "" H 3100 1250 50  0001 C CNN
+	1    3100 1250
+	1    0    0    -1  
+$EndComp
+$Comp
+L GNDPWR #PWR?
+U 1 1 5B8732D1
+P 3100 1900
+F 0 "#PWR?" H 3100 1700 50  0001 C CNN
+F 1 "GNDPWR" H 3100 1770 50  0000 C CNN
+F 2 "" H 3100 1850 50  0001 C CNN
+F 3 "" H 3100 1850 50  0001 C CNN
+	1    3100 1900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Motor_DC M?
+U 1 1 5B87332A
+P 4950 1550
+F 0 "M?" H 5050 1650 50  0000 L CNN
+F 1 "Motor_DC" H 5050 1350 50  0000 L TNN
+F 2 "" H 4950 1460 50  0001 C CNN
+F 3 "" H 4950 1460 50  0001 C CNN
+	1    4950 1550
+	1    0    0    -1  
+$EndComp
+$Comp
+L LMD18201 IC?
+U 1 1 5B873549
+P 4050 3200
+F 0 "IC?" H 4050 3100 60  0000 C CNN
+F 1 "LMD18201" H 3750 3550 60  0000 C CNN
+F 2 "" H 4050 3200 60  0000 C CNN
+F 3 "" H 4050 3200 60  0000 C CNN
+	1    4050 3200
+	-1   0    0    1   
+$EndComp
+$Comp
+L Conn_01x02 J?
+U 1 1 5B873758
+P 4000 2400
+F 0 "J?" H 4000 2500 50  0000 C CNN
+F 1 "Conn_MOTOR" H 4000 2200 50  0000 C CNN
+F 2 "" H 4000 2400 50  0001 C CNN
+F 3 "" H 4000 2400 50  0001 C CNN
+	1    4000 2400
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Barrel_Jack J?
+U 1 1 5B8737F3
+P 2650 1600
+F 0 "J?" H 2650 1810 50  0000 C CNN
+F 1 "Barrel_Jack" H 2650 1425 50  0000 C CNN
+F 2 "" H 2700 1560 50  0001 C CNN
+F 3 "" H 2700 1560 50  0001 C CNN
+	1    2650 1600
+	1    0    0    -1  
+$EndComp
+$Comp
+L SW_Push_Open SW1
+U 1 1 5B873998
+P 2050 5100
+F 0 "SW1" H 2050 5200 50  0000 C CNN
+F 1 "UPPER_LIMIT" H 2050 5025 50  0000 C CNN
+F 2 "" H 2050 5300 50  0001 C CNN
+F 3 "" H 2050 5300 50  0001 C CNN
+	1    2050 5100
+	-1   0    0    1   
+$EndComp
+$Comp
+L SW_Push_Open SW2
+U 1 1 5B873A01
+P 2050 5450
+F 0 "SW2" H 2050 5550 50  0000 C CNN
+F 1 "LOWER_LIMIT" H 2050 5375 50  0000 C CNN
+F 2 "" H 2050 5650 50  0001 C CNN
+F 3 "" H 2050 5650 50  0001 C CNN
+	1    2050 5450
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5B87482D
+P 5150 3350
+F 0 "#PWR?" H 5150 3100 50  0001 C CNN
+F 1 "GND" H 5150 3200 50  0000 C CNN
+F 2 "" H 5150 3350 50  0001 C CNN
+F 3 "" H 5150 3350 50  0001 C CNN
+	1    5150 3350
+	0    -1   -1   0   
+$EndComp
+$Comp
+L C C?
+U 1 1 5B874853
+P 2800 3000
+F 0 "C?" H 2825 3100 50  0000 L CNN
+F 1 "10nf" H 2825 2900 50  0000 L CNN
+F 2 "" H 2838 2850 50  0001 C CNN
+F 3 "" H 2800 3000 50  0001 C CNN
+	1    2800 3000
+	1    0    0    -1  
+$EndComp
+$Comp
+L C C?
+U 1 1 5B8748AC
+P 5150 3000
+F 0 "C?" H 5175 3100 50  0000 L CNN
+F 1 "10nf" H 5175 2900 50  0000 L CNN
+F 2 "" H 5188 2850 50  0001 C CNN
+F 3 "" H 5150 3000 50  0001 C CNN
+	1    5150 3000
+	1    0    0    -1  
+$EndComp
+Text GLabel 3350 1500 2    60   Input ~ 0
+MPOWER
+Text GLabel 3000 3550 0    60   Input ~ 0
+MPOWER
+$Comp
+L GND #PWR?
+U 1 1 5B876CE2
+P 2800 3350
+F 0 "#PWR?" H 2800 3100 50  0001 C CNN
+F 1 "GND" H 2800 3200 50  0000 C CNN
+F 2 "" H 2800 3350 50  0001 C CNN
+F 3 "" H 2800 3350 50  0001 C CNN
+	1    2800 3350
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2500 3150 3200 3150
+Wire Wire Line
+	4900 3150 5550 3150
+Wire Wire Line
+	5150 2850 4900 2850
+Wire Wire Line
+	4900 2850 4900 3050
+Wire Wire Line
+	2800 2850 3200 2850
+Wire Wire Line
+	3200 2850 3200 3050
+Wire Wire Line
+	2950 1500 3350 1500
+Wire Wire Line
+	3100 1500 3100 1250
+Wire Wire Line
+	2950 1700 3100 1700
+Wire Wire Line
+	3100 1700 3100 1900
+Wire Wire Line
+	3000 3550 3200 3550
+Wire Wire Line
+	4900 3350 5150 3350
+Wire Wire Line
+	2800 3350 3200 3350
+Wire Wire Line
+	3050 3350 3050 3450
+Wire Wire Line
+	3050 3450 3200 3450
+Wire Wire Line
+	4900 3450 4900 3750
+Wire Wire Line
+	4900 3750 6000 3750
+Wire Wire Line
+	4900 3250 5550 3250
+Wire Wire Line
+	5550 3250 5550 3650
+Wire Wire Line
+	5550 3650 6000 3650
+Connection ~ 2800 3150
+Connection ~ 5150 3150
+$Comp
+L GND #PWR?
+U 1 1 5B8786D9
+P 4550 5400
+F 0 "#PWR?" H 4550 5150 50  0001 C CNN
+F 1 "GND" H 4550 5250 50  0000 C CNN
+F 2 "" H 4550 5400 50  0001 C CNN
+F 3 "" H 4550 5400 50  0001 C CNN
+	1    4550 5400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Conn_01x04 J?
+U 1 1 5B8789C4
+P 3200 5200
+F 0 "J?" H 3200 5400 50  0000 C CNN
+F 1 "LIMIT_USB" H 3200 4900 50  0000 C CNN
+F 2 "" H 3200 5200 50  0001 C CNN
+F 3 "" H 3200 5200 50  0001 C CNN
+	1    3200 5200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2250 5100 2550 5100
+Wire Wire Line
+	2550 5100 2550 5200
+Wire Wire Line
+	2550 5200 3000 5200
+Wire Wire Line
+	2250 5450 2300 5450
+Wire Wire Line
+	2300 5450 2300 5300
+Wire Wire Line
+	2300 5300 3000 5300
+Wire Wire Line
+	1850 5100 1700 5100
+Wire Wire Line
+	1700 5100 1700 4800
+Wire Wire Line
+	1700 4800 3000 4800
+Wire Wire Line
+	3000 4800 3000 5100
+Wire Wire Line
+	1850 5450 1700 5450
+Wire Wire Line
+	1700 5450 1700 5650
+Wire Wire Line
+	1700 5650 2750 5650
+Wire Wire Line
+	2750 5650 2750 5400
+Wire Wire Line
+	2750 5400 3000 5400
+Wire Wire Line
+	4000 2600 2500 2600
+Wire Wire Line
+	2500 2600 2500 3150
+Wire Wire Line
+	4150 2600 5550 2600
+Wire Wire Line
+	5550 2600 5550 3150
+$Comp
+L Conn_01x02_Female J?
+U 1 1 5B87A1CB
+P 4100 2150
+F 0 "J?" H 4100 2250 50  0000 C CNN
+F 1 "MOTOR" H 4100 1950 50  0000 C CNN
+F 2 "" H 4100 2150 50  0001 C CNN
+F 3 "" H 4100 2150 50  0001 C CNN
+	1    4100 2150
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4000 1950 4000 1350
+Wire Wire Line
+	4000 1350 4950 1350
+Wire Wire Line
+	4100 1950 4100 1850
+Wire Wire Line
+	4100 1850 4950 1850
+$Comp
+L Conn_01x04_Female J?
+U 1 1 5B87AA73
+P 3700 5300
+F 0 "J?" H 3700 5500 50  0000 C CNN
+F 1 "LIMITS" H 3700 5000 50  0000 C CNN
+F 2 "" H 3700 5300 50  0001 C CNN
+F 3 "" H 3700 5300 50  0001 C CNN
+	1    3700 5300
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	3900 5300 4550 5300
+Wire Wire Line
+	4550 5200 4550 5400
+Wire Wire Line
+	3900 5200 4550 5200
+Connection ~ 4550 5300
+Text GLabel 5900 3250 0    60   Input ~ 0
+D10
+Text GLabel 5900 3150 0    60   Input ~ 0
+D11
+Wire Wire Line
+	5900 3150 6000 3150
+Wire Wire Line
+	5900 3250 6000 3250
+Text GLabel 4050 5100 2    60   Input ~ 0
+D11
+Text GLabel 4050 5400 2    60   Input ~ 0
+D10
+Wire Wire Line
+	3900 5100 4050 5100
+Wire Wire Line
+	3900 5400 4050 5400
+$Comp
+L Conn_01x04_Female J?
+U 1 1 5B87B971
+P 4000 6100
+F 0 "J?" H 4000 6300 50  0000 C CNN
+F 1 "Conn_01x04_Female" H 4000 5800 50  0000 C CNN
+F 2 "" H 4000 6100 50  0001 C CNN
+F 3 "" H 4000 6100 50  0001 C CNN
+	1    4000 6100
+	-1   0    0    1   
+$EndComp
+$Comp
+L Conn_01x04 J?
+U 1 1 5B87B9CE
+P 3250 6000
+F 0 "J?" H 3250 6200 50  0000 C CNN
+F 1 "ENCODER_USB" H 3250 5700 50  0000 C CNN
+F 2 "" H 3250 6000 50  0001 C CNN
+F 3 "" H 3250 6000 50  0001 C CNN
+	1    3250 6000
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5B87BAD2
+P 4850 6400
+F 0 "#PWR?" H 4850 6150 50  0001 C CNN
+F 1 "GND" H 4850 6250 50  0000 C CNN
+F 2 "" H 4850 6400 50  0001 C CNN
+F 3 "" H 4850 6400 50  0001 C CNN
+	1    4850 6400
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR?
+U 1 1 5B87BB10
+P 5000 5950
+F 0 "#PWR?" H 5000 5800 50  0001 C CNN
+F 1 "+5V" H 5000 6090 50  0000 C CNN
+F 2 "" H 5000 5950 50  0001 C CNN
+F 3 "" H 5000 5950 50  0001 C CNN
+	1    5000 5950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4200 6000 5000 6000
+Wire Wire Line
+	5000 6000 5000 5950
+Wire Wire Line
+	4200 6200 4850 6200
+Wire Wire Line
+	4850 6200 4850 6400
+Text GLabel 4400 6100 2    60   Input ~ 0
+D3
+Text GLabel 4450 5900 2    60   Input ~ 0
+D2
+Wire Wire Line
+	4200 5900 4450 5900
+Wire Wire Line
+	4200 6100 4400 6100
+Text GLabel 5800 4050 0    60   Input ~ 0
+D2
+Text GLabel 5800 3900 0    60   Input ~ 0
+D3
+Wire Wire Line
+	5800 3900 6000 3900
+Wire Wire Line
+	6000 3900 6000 3950
+Wire Wire Line
+	5800 4050 6000 4050
+$Comp
+L R R?
+U 1 1 5B87CE46
+P 3850 3950
+F 0 "R?" V 3930 3950 50  0000 C CNN
+F 1 "10K" V 3850 3950 50  0000 C CNN
+F 2 "" V 3780 3950 50  0001 C CNN
+F 3 "" H 3850 3950 50  0001 C CNN
+	1    3850 3950
+	0    1    1    0   
+$EndComp
+$Comp
+L +5V #PWR?
+U 1 1 5B87CF66
+P 4100 3850
+F 0 "#PWR?" H 4100 3700 50  0001 C CNN
+F 1 "+5V" H 4100 3990 50  0000 C CNN
+F 2 "" H 4100 3850 50  0001 C CNN
+F 3 "" H 4100 3850 50  0001 C CNN
+	1    4100 3850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3700 3900 3700 3950
+Wire Wire Line
+	3200 3250 2450 3250
+Wire Wire Line
+	2450 3250 2450 3950
+Wire Wire Line
+	2450 3950 3700 3950
+Wire Wire Line
+	4100 3850 4100 3950
+Wire Wire Line
+	4100 3950 4000 3950
+Text Notes 1300 7600 0    197  ~ 0
+GreenVillains Linear Axis Simulator
+$EndSCHEMATC
