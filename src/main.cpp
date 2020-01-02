@@ -1,171 +1,106 @@
-#include <Arduino.h>
-#include <Encoder.h>
-#define CPI 720
-#define SERIAL_BAUD 9600
-#define DISPLAY_DELAY 10000
-#define BUTTON_COUNT_THRESH 10
-#define UPPER_LIMIT_PIN 10
-#define LOWER_LIMIT_PIN 11
-#define ENC_A_PIN 2
-#define ENC_B_PIN 3
-#define MOTOR_PWM_PIN 5
-#define MOTOR_DIR_PIN 6
-#define UP_BTN_PIN 12
-#define DOWN_BTN_PIN 13
-#define DEFAULT_SPEED 255
-#define POSITION_TOLERANCE 50
-#define MAX_VALUE -4.0
-#define MIN_VALUE 5.0
+#include "Arduino.h"
+#include "Wire.h"
+#include "SSD1306Ascii.h"
+#include "SSD1306AsciiWire.h"
+#include "OneButton.h"
 
+//#include "ClickButton.h"
+#include <ESP32Encoder.h>
+#include "Ticker.h"
+#define menuFont X11fixed7x14
+#define CPI 360
+#define SERIAL_BAUD 57600
+#define DISPLAY_UPDATE_INTERVAL_MS 10
+#define SERIAL_UPDATE_INTERVAL_MS 1000
+#define BUTTON_PIN 27
+#define ENC_A_PIN 25
+#define ENC_B_PIN 26
+#define I2C_ADDRESS 0x3C
+
+void update_display();
+void update_serial();
 //global variables
-Encoder positionEncoder(ENC_A_PIN, ENC_B_PIN);
+//Encoder positionEncoder(ENC_A_PIN, ENC_B_PIN);
+ESP32Encoder encoder;
+SSD1306AsciiWire oled;
+OneButton button(BUTTON_PIN,true);
 
-int displayDelayCounter = 0;
-long currentPosition = -999;
-long desiredPosition = 0;
-int lowerLimitTriggered = 0;
-int upperLimitTriggered = 0;
-int motorDir = 0;
-int motorSpeed =0;
-int upButtonCounts = 0;
-int downButtonCounts = 0;
+Ticker displayTimer(update_display,DISPLAY_UPDATE_INTERVAL_MS,0,MILLIS);
+Ticker serialTimer(update_serial,SERIAL_UPDATE_INTERVAL_MS,0,MILLIS);
 
+volatile long currentPosition = -999;
+
+void setupOLED(){
+  Wire.setClock(400000L);  
+  oled.begin(&Adafruit128x64, I2C_ADDRESS);
+  oled.setFont(menuFont);
+  oled.displayRemap(true);
+  oled.clear();
+
+}
+
+void button_SingleClick(){
+  currentPosition = 0;
+  encoder.setCount(0);
+  Serial.println("clicked");
+}
+void button_DoubleClick(){
+  currentPosition = 1000;
+} 
+
+void setupEncoder(){
+  encoder.attachHalfQuad(ENC_A_PIN,ENC_B_PIN);
+}
+
+void setupButton(){
+  button.attachDoubleClick(button_DoubleClick);
+  button.attachClick(button_SingleClick);
+  button.setDebounceTicks(20);
+  button.reset();
+  
+}
 void setup_pins(){
-  pinMode(UPPER_LIMIT_PIN,INPUT_PULLUP);
-  pinMode(LOWER_LIMIT_PIN,INPUT_PULLUP);
-  //enc pins are handled with the Encoder object
-  pinMode(MOTOR_PWM_PIN,OUTPUT);
-  pinMode(MOTOR_DIR_PIN,OUTPUT);
-
-  pinMode(UP_BTN_PIN,INPUT_PULLUP);
-  pinMode(DOWN_BTN_PIN,INPUT_PULLUP);
+    //pinMode(BUTTON_PIN,INPUT_PULLUP);
 }
 
 void setup() {
   Serial.begin(SERIAL_BAUD);
-  Serial.println("Basic Encoder Test:");
-
+  Wire.begin();
+  displayTimer.start();
+  serialTimer.start();
+  setupOLED();
+  setupEncoder();
   setup_pins();
+  setupButton();
+  Serial.println("Basic Encoder Test");
 }
-
-void update_position(){
-  currentPosition = positionEncoder.read();
-};
-
-void read_inputs(){
-  upperLimitTriggered = digitalRead(UPPER_LIMIT_PIN);
-  lowerLimitTriggered = digitalRead(LOWER_LIMIT_PIN);
-  int u = digitalRead(UP_BTN_PIN);
-  int d = digitalRead(DOWN_BTN_PIN);
-  if ( u == 0 ){
-    upButtonCounts += 1;
-    if ( upButtonCounts > BUTTON_COUNT_THRESH){
-      desiredPosition += 1;
-      upButtonCounts = 0;
-    }
-    
-  }
-  if ( d == 0 ){
-    downButtonCounts += 1;
-    if ( downButtonCounts > BUTTON_COUNT_THRESH){
-      desiredPosition -= 1;
-      downButtonCounts = 0;
-    }
-    
-  }  
-};
-
-void set_motor_output(){
-  int positionError = currentPosition - desiredPosition;
-
-  if ( abs(positionError) > POSITION_TOLERANCE){
-   
-    if ( positionError < 0 ){
-       motorDir = 0;
-       if ( lowerLimitTriggered == 0){
-          motorSpeed = DEFAULT_SPEED;
-       }
-       else{
-          motorSpeed = 0;
-       }
-    }
-    else{
-       motorDir = 1;
-       if ( upperLimitTriggered == 0){
-          motorSpeed = DEFAULT_SPEED;
-       }
-       else{
-          motorSpeed = 0;
-       }       
-    }
-  }
-  else{
-    //don't move
-    motorSpeed = 0;
-  }
-  analogWrite(MOTOR_PWM_PIN,motorSpeed);
-  digitalWrite(MOTOR_DIR_PIN,motorDir);
-  
-};
 
 float toInches( long position ){
   return (float)position/(float)CPI;
 };
 
-void process_serial_command(){
-  if ( Serial.available()){
-    char command_char = Serial.read();
-
-    switch(command_char){
-      case 'h':
-        desiredPosition -= 100;
-        break;
-      case 'k':
-        desiredPosition += 100;
-        break;
-      case 'g':
-        desiredPosition -= 3000;
-        break;
-      case 'l':
-        desiredPosition += 3000;
-        break;        
-      case 'j':
-        desiredPosition = 0;
-        currentPosition =0;
-        positionEncoder.write(0);
-        break;
-      default:
-        Serial.print("Unrecognized command '");
-        Serial.print(command_char);
-        Serial.println("' : try again");
-    }
-  }
-}
-
 void update_display(){
-  displayDelayCounter += 1;
-  if ( displayDelayCounter > DISPLAY_DELAY){
-    Serial.print("CURRENT=");
-    Serial.print(toInches(currentPosition),4);
-    Serial.print(",  DESIRED=");
-    Serial.print(toInches(desiredPosition),4);    
-    Serial.print(",  LIMITS=");
-    Serial.print(lowerLimitTriggered);
-    Serial.print(upperLimitTriggered);
-    Serial.print(",  MOTOR::DIR=");
-    Serial.print(motorDir);
-    Serial.print(",SPD=");
-    Serial.print(motorSpeed);    
-    Serial.println(""); 
-    displayDelayCounter = 0;
-  }
-
+  oled.setCursor(0,0);
+  oled.println("Readout 1.0");oled.clearToEOL();
+  oled.print("P=");
+  oled.print(toInches(currentPosition),4); oled.clearToEOL();
+  oled.println(""); 
 };
 
-void loop() {
+void update_serial(){
+  Serial.print("P=");
+  Serial.print(toInches(currentPosition),4);
+  Serial.println("");   
+}
+
+void update_position(){
+  currentPosition = encoder.getCount();
+};
+
+void loop() {  
   update_position();
-  read_inputs();
-  set_motor_output();
-  update_display();
-  process_serial_command();
+  button.tick();
+  displayTimer.update();
+  serialTimer.update();
+  //delay(5);
 }
